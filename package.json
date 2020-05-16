@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/Christina3107/DA355A-Inl3/issues"
   },
-  "homepage": "https://github.com/Christina3107/DA355A-Inl3#readme"
+  "homepage": "https://github.com/Christina3107/DA355A-Inl3#readme",
+  "dependencies": {
+    "axios": "^0.19.2"
+  }
 }
