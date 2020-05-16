@@ -1,0 +1,19 @@
+{
+  "name": "da355a-inl3",
+  "version": "1.0.0",
+  "description": "\"Inlämningsuppgift 3 i kursen DA355A\"",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "jest tests"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Christina3107/DA355A-Inl3.git"
+  },
+  "author": "Christina Knepper",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Christina3107/DA355A-Inl3/issues"
+  },
+  "homepage": "https://github.com/Christina3107/DA355A-Inl3#readme"
+}
