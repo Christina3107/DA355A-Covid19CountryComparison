@@ -4,7 +4,7 @@
   "description": "\"Inlämningsuppgift 3 i kursen DA355A\"",
   "main": "src/index.js",
   "scripts": {
-    "test": "jest tests"
+    "test": ""
   },
   "repository": {
     "type": "git",
@@ -17,6 +17,10 @@
   },
   "homepage": "https://github.com/Christina3107/DA355A-Inl3#readme",
   "dependencies": {
-    "axios": "^0.19.2"
+    "chart.js": "^2.9.3"
+  },
+  "devDependencies": {
+    "webpack": "^4.43.0",
+    "webpack-cli": "^3.3.11"
   }
 }
