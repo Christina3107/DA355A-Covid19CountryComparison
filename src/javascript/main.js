@@ -10,7 +10,7 @@ import * as countryData from '../../node_modules/country-json/src/country-by-pop
 let myChart = document.getElementById('myChart').getContext('2d');
 
 
-let population = countryData.find(x => x.country === 'Italy').population;
+let population = countryData.find(x => x.country === 'Germany').population;
 console.log(population)
 /* let comparisonChart = new Chart (myChart, {
   type: 'line',
@@ -52,13 +52,13 @@ function buildChart(Cases, Dates) {
 
 
   var settings = {
-    "url": "https://api.covid19api.com/dayone/country/italy/status/deaths/live",
+    "url": "https://api.covid19api.com/dayone/country/germany/status/deaths/live",
     "method": "GET",
     "timeout": 0,
   };
   
-  var currentPlaceCases = []
-  var currentPlaceDates = []
+  let currentPlaceCases = []
+  let currentPlaceDates = []
 
   $.ajax(settings).done(function (response) {
     $.each(response, function() {
