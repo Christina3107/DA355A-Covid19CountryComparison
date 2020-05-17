@@ -2,9 +2,11 @@
   "name": "da355a-inl3",
   "version": "1.0.0",
   "description": "\"Inlämningsuppgift 3 i kursen DA355A\"",
-  "main": "src/main.js",
+  "main": "src/javascript/main.js",
   "scripts": {
-    "test": ""
+    "test": "",
+    "watch": "webpack --watch",
+    "build": "webpack"
   },
   "repository": {
     "type": "git",
