@@ -2,7 +2,7 @@
   "name": "da355a-inl3",
   "version": "1.0.0",
   "description": "\"Inlämningsuppgift 3 i kursen DA355A\"",
-  "main": "src/index.js",
+  "main": "src/main.js",
   "scripts": {
     "test": ""
   },
