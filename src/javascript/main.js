@@ -9,11 +9,10 @@ var chartData = {
   type: "",
   coronaDatasets: []
 }
-console.log(chartData)
-console.log(chartData.datasets)
-
+var comparisonChart = null
+var countries = []
 var currentPlace = ""
-var comparisonCountry = "Germany"
+var comparisonCountry 
 let myChart = document.getElementById('myChart').getContext('2d');
 let options = {
   timeout: 5000
@@ -23,18 +22,30 @@ $(document).ready(function(){
   //lägg till spinner
   console.log("Retrieving position")
   navigator.geolocation.getCurrentPosition(success, error, options);
+  getCountries()
 });
+
+//Select country
+$("#countrySelector").on("change", function() {
+  comparisonCountry = [$("#countrySelector").val(), $("#countrySelector option:selected").text()]
+  console.log(comparisonCountry)
+})
 
 //Show Chart
 $("#getStats").on("click", function() {
-  //töm chartData ifall man vill göra en ny..., disable button tills man har valt nytt land
+  chartData.coronaDatasets = []
+  if (comparisonChart != null) {
+    comparisonChart.destroy()
+    console.log("Old chart destroyed")
+  }
+
   let resultCurrentPlace = getCovidData(currentPlace)
-  let resultComparisonCountry = getCovidData(comparisonCountry)
+  let resultComparisonCountry = getCovidData(comparisonCountry[0])
   let promisesComplete = $.when(resultCurrentPlace, resultComparisonCountry);
   promisesComplete.done(function() {
     console.log("Promises done")
     populateChartData(resultCurrentPlace.responseJSON, currentPlace)
-    populateChartData(resultComparisonCountry.responseJSON, comparisonCountry)
+    populateChartData(resultComparisonCountry.responseJSON, comparisonCountry[1])
     
   }).done(function() {
     console.log(chartData)
@@ -63,7 +74,7 @@ function populateChartData(result, country) {
 
 //Chart builder
 function buildChart() {
-  let comparisonChart = new Chart (myChart, {
+  comparisonChart = new Chart (myChart, {
     type: 'line',
     data: {
       labels: chartData.coronaDatasets[0].dates,
@@ -104,6 +115,21 @@ function getCovidData(country) {
     url: `https://api.covid19api.com/dayone/country/${country}/status/deaths/live`,
     method: "GET",
     timeout: 0
+  })
+}
+
+//Countries API call
+function getCountries() {
+  return $.ajax({
+    url: `https://api.covid19api.com/countries`,
+    method: "GET",
+    timeout: 0
+  }).done(function(result) {
+    console.log(result)
+    countries = result
+    $.each(result, function() {
+      $("#countrySelector").append(`<option value=${this.Slug}>${this.Country}</option>`)
+    })
   })
 }
 

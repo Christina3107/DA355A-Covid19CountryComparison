@@ -15,6 +15,10 @@
         <main>
             <section>
                 <p id="currentLocation">Retrieving position ...</p>
+                <select id="countrySelector">
+                    <option value="" disabled selected>Select country</option>
+
+                </select>
                 <div class="flower-spinner">
                     <div class="dots-container">
                       <div class="bigger-dot">
@@ -24,7 +28,7 @@
                   </div>
                 <button id="getStats" disabled>Get stats</button>
             </section>
-            <section class="container">
+            <section class="container" id="chartContainer">
                 <canvas id="myChart"></canvas>
             </section>
         </main>
