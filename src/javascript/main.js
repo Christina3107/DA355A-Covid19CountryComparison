@@ -2,6 +2,7 @@
 //Skapa slotmachine, länder = från country-json???
 //Styling chart
 //Info
+//ev dashboard med olika typer av statistik, t.ex. deaths, active, recovered cases + world?
 import Chart from '../../node_modules/chart.js/dist/Chart.bundle.js'
 import * as countryData from '../../node_modules/country-json/src/country-by-population.json'
 var chartData = {
@@ -18,13 +19,11 @@ let options = {
   timeout: 5000
 }
 
-
 $(document).ready(function(){
   //lägg till spinner
   console.log("Retrieving position")
   navigator.geolocation.getCurrentPosition(success, error, options);
 });
-
 
 //Show Chart
 $("#getStats").on("click", function() {
@@ -41,18 +40,8 @@ $("#getStats").on("click", function() {
     console.log(chartData)
     buildChart()
   })
-
-  //Problem: skriver ut chartData innan populate är klar, måste använda deferred? för att för köra chartBuilder när det finns data
 })
-  //$.when(getCovidData(currentPlace)).done(function() {
-  //console.log(chartData.coronaDatasets[0].cases)
-    //console.log(chartData.coronaDatasets[0])
-    //let cases = chartData.coronaDatasets[0]["cases"]
-    //let dates = chartData.coronaDatasets[0].dates
-    //buildChart(cases, dates)
-  //lägg in when --> två ajax anrop, när de är klara kalla på buildChart med data från chartData
   
-
 function populateChartData(result, country) {
   let population = countryData.find(x => x.country === country).population;
   console.log(country, population)
@@ -120,7 +109,7 @@ function getCovidData(country) {
 
 //Geolocaton API call
 function getCountry(lat, lng) {
-  let url = `http://api.geonames.org/countryCode?lat=${lat}&lng=${lng}&username=christina3107&type=JSON`
+  let url = `https://secure.geonames.org/countryCode?lat=${lat}&lng=${lng}&username=christina3107&type=JSON`
   $.ajax({
       url: `${url}`
   }).done(function(data) {
