@@ -3,6 +3,9 @@
 //Styling chart
 //Info
 //ev dashboard med olika typer av statistik, t.ex. deaths, active, recovered cases + world?
+//ändra datasets: date: {country: cases, country: cases}
+//kolla de olika API-endpoints, välj den som är lämplig!
+
 import Chart from '../../node_modules/chart.js/dist/Chart.bundle.js'
 import * as countryData from '../../node_modules/country-json/src/country-by-population.json'
 var chartData = {
