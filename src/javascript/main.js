@@ -3,38 +3,60 @@
 //Styling chart
 //Info
 //ev dashboard med olika typer av statistik, t.ex. deaths, active, recovered cases + world?
+//alternativt : byta typ av chart --> skicka med variabel till build chart???
 //ändra datasets: date: {country: cases, country: cases}
-//kolla de olika API-endpoints, välj den som är lämplig!
+//Lägg till felmeddelande, t.ex. om nån dataarray är tom eller nåt --> if array.length == 0 --> felmeddelande
+//felhantering för select
+//searchable select
+//about
+//statistics
+
+//https://api.covid19api.com/total/country/canada?from=2020-03-01T00:00:00Z&to=2020-04-01T00:00:00Z
+
+//API response
+//"Confirmed": 14796,
+//    "Deaths": 158,
+//    "Recovered": 466,
+//    "Active": 14172,
 
 import Chart from '../../node_modules/chart.js/dist/Chart.bundle.js'
 import * as countryData from '../../node_modules/country-json/src/country-by-population.json'
+import * as countryNames from '../../node_modules/country-json/src/country-by-abbreviation.json'
+
+//Loads country names and abbreviations from json-file
+var countryCodes = countryNames.default
+
+//Data which is used to create charts
 var chartData = {
   type: "",
   coronaDatasets: []
 }
+
 var comparisonChart = null
+//check if this is necessary
 var countries = []
 var currentPlace = ""
-var comparisonCountry 
+var comparisonCountry = ""
 let myChart = document.getElementById('myChart').getContext('2d');
 let options = {
   timeout: 5000
 }
 
+//On load the current position is retrieved and the select list is populated with countries
 $(document).ready(function(){
   //lägg till spinner
   console.log("Retrieving position")
   navigator.geolocation.getCurrentPosition(success, error, options);
-  getCountries()
+  getCountries(countryCodes)
 });
 
-//Select country
+//Select country: creates an array with abbreviation and name of comparison country
 $("#countrySelector").on("change", function() {
   comparisonCountry = [$("#countrySelector").val(), $("#countrySelector option:selected").text()]
   console.log(comparisonCountry)
 })
 
-//Show Chart
+//Show Chart: destroys chart if it exists, retrieves corona statistics for current location and comparison country and populates chart
 $("#getStats").on("click", function() {
   chartData.coronaDatasets = []
   if (comparisonChart != null) {
@@ -55,27 +77,64 @@ $("#getStats").on("click", function() {
     buildChart()
   })
 })
-  
+
+//Retrieves the current date, needed to get up to date statistics from the Covid-19 API
+function getTodaysDate() {
+  var today = new Date();
+  var dd = today.getDate();
+
+  var mm = today.getMonth()+1; 
+  var yyyy = today.getFullYear();
+  if(dd<10) 
+  {
+      dd='0'+dd;
+  } 
+
+  if(mm<10) 
+  {
+      mm='0'+mm;
+  } 
+  today = yyyy+'-'+mm+'-'+dd;
+  return today;
+}
+
+//Creates datasets based on API response which is then used to populate the chart
 function populateChartData(result, country) {
   let population = countryData.find(x => x.country === country).population;
   console.log(country, population)
   let dates = []
-  let cases = []
+  //let cases = []
+  let active = []
+  let deaths = []
+  let confirmed = []
+  let recovered = []
   $.each(result, function() {
-    let perCapita = (this.Cases/population)* 100000
-    cases.push(perCapita)
+    //let perCapita = (this.Cases/population)* 100000
+    //cases.push(perCapita)
+    let activePC = (this.Active/population) * 100000
+    let deathsPC = (this.Deaths/population) * 100000
+    let confirmedPC = (this.Confirmed/population) * 100000
+    let recoveredPC = (this.Recovered/population) * 100000
+    active.push(activePC)
+    deaths.push(deathsPC)
+    confirmed.push(confirmedPC)
+    recovered.push(recoveredPC)
     dates.push(this.Date.substr(0, 10))
   })
 
   let dataset = {
     country: country,
-    cases: cases,
+    //cases: cases,
+    active: active,
+    deaths: deaths,
+    confirmed: confirmed,
+    recovered: recovered,
     dates: dates
   }
   chartData.coronaDatasets.push(dataset)
   }
 
-//Chart builder
+//Chart builder --> kolla om den kan ta emot en variabel type för att byta mellan active, deaths etc.
 function buildChart() {
   comparisonChart = new Chart (myChart, {
     type: 'line',
@@ -84,11 +143,13 @@ function buildChart() {
       datasets: [
         {
           label: chartData.coronaDatasets[0].country,
-          data: chartData.coronaDatasets[0].cases
+          //data: chartData.coronaDatasets[0].cases
+          data: chartData.coronaDatasets[0].active
         },
         {
           label: chartData.coronaDatasets[1].country,
-          data: chartData.coronaDatasets[1].cases
+          //data: chartData.coronaDatasets[1].cases
+          data: chartData.coronaDatasets[1].active
         }
       ]
     },
@@ -98,7 +159,7 @@ function buildChart() {
 
 };
 
-//Geolocation
+//Geolocation: retrieves name of the current location
 function success(position) {
   console.log("This is our position: ", position);
   let lat = position.coords.latitude
@@ -114,15 +175,31 @@ function error(err) {
 
 //Covid19 API call
 function getCovidData(country) {
+  let today = getTodaysDate()
+  let url = `https://api.covid19api.com/total/country/${country}?from=2020-03-01T00:00:00Z&to=${today}T00:00:00Z`
+  console.log(url)
   return $.ajax({
-    url: `https://api.covid19api.com/dayone/country/${country}/status/deaths/live`,
+    url: url,
+    //url: `https://api.covid19api.com/dayone/country/${country}/status/deaths/live`,
     method: "GET",
     timeout: 0
+  })
+ 
+}
+
+//Populates the select list
+function getCountries(countryCodes) {
+  console.log(countryCodes)
+  $.each(countryCodes, function () {
+    let country = {name: this.country, code: this.abbreviation}
+    console.log(country)
+    countries.push(country)
+    $("#countrySelector").append(`<option value=${this.abbreviation}>${this.country}</option>`)
   })
 }
 
 //Countries API call
-function getCountries() {
+/* function getCountries() {
   return $.ajax({
     url: `https://api.covid19api.com/countries`,
     method: "GET",
@@ -134,7 +211,7 @@ function getCountries() {
       $("#countrySelector").append(`<option value=${this.Slug}>${this.Country}</option>`)
     })
   })
-}
+} */
 
 //Geolocaton API call
 function getCountry(lat, lng) {
