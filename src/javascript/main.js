@@ -22,9 +22,15 @@
 import Chart from '../../node_modules/chart.js/dist/Chart.bundle.js'
 import * as countryData from '../../node_modules/country-json/src/country-by-population.json'
 import * as countryNames from '../../node_modules/country-json/src/country-by-abbreviation.json'
+import * as flags from '../../node_modules/country-json/src/country-by-flag.json'
 
 //Loads country names and abbreviations from json-file
 var countryCodes = countryNames.default
+var flagImgs = flags.default
+
+//Search for flag using result from geolocation and add flag to indicate current location!
+let flag = flagImgs[25].flag_base64
+$("#flag").append(`<img src=${flag}>`)
 
 //Data which is used to create charts
 var chartData = {
@@ -189,10 +195,9 @@ function getCovidData(country) {
 
 //Populates the select list
 function getCountries(countryCodes) {
-  console.log(countryCodes)
+  
   $.each(countryCodes, function () {
     let country = {name: this.country, code: this.abbreviation}
-    console.log(country)
     countries.push(country)
     $("#countrySelector").append(`<option value=${this.abbreviation}>${this.country}</option>`)
   })
