@@ -11,10 +11,31 @@ html, body {
 
 #flag > img {
   height: 30px;
+  margin-bottom: 20px;
 }
 
 #chartType {
   display: none;
+}
+
+.input-group {
+  margin-bottom: 20px;
+}
+
+.select2-selection__rendered {
+  line-height: 35px !important;
+}
+
+.select2-container .select2-selection--single {
+  height: 38px !important;
+  border-top-right-radius: 0 !important;
+  border-bottom-right-radius: 0 !important;
+  border-color: black !important;
+}
+
+.select2-selection__arrow {
+  height: 35px !important;
+  border-color: black !important;
 }
 
 
