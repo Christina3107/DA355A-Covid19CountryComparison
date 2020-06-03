@@ -1,7 +1,6 @@
 //To Do:
 //Styling chart
 //Info
-//ev dashboard med olika typer av statistik, t.ex. deaths, active, recovered cases + world?
 //Lägg till felmeddelande, t.ex. om nån dataarray är tom eller nåt --> if array.length == 0 --> felmeddelande
 //about
 //statistics
@@ -14,7 +13,7 @@ import * as countryNames from '../../node_modules/country-json/src/country-by-ab
 import * as flags from '../../node_modules/country-json/src/country-by-flag.json'
 import $ from 'jquery';
 import 'select2';
-import 'bootstrap'
+import 'bootstrap';
 
 
 //Loads country names and abbreviations from json-file --> check whether those have to be global
@@ -58,10 +57,10 @@ $("#getStats").on("click", function() {
   if (comparisonChart != null) {
     comparisonChart.destroy()
     console.log("Old chart destroyed")
-    $('input:checked').removeProp('checked');
+    $("label").removeClass("active")
+    $("#confirmedlabel").addClass("active")
   }
   $("#chartType").css("display", "inline")
-  $("#confirmed").prop("checked")
   let resultCurrentPlace = getCovidData(currentPlace)
   let resultComparisonCountry = getCovidData(comparisonCountry[0])
   let promisesComplete = $.when(resultCurrentPlace, resultComparisonCountry);

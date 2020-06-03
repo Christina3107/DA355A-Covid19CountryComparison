@@ -31,30 +31,22 @@
                   </div>
                 <button id="getStats" disabled>Get stats</button>
                 <div id="chartType">
-                    <form>
-                        <input type="radio" name="chartType" id="confirmed" value="confirmed" checked> 
-                        <label for="confirmed">confirmed</label>
-                        <input type="radio" name="chartType" id="active" value="active"> 
-                        <label for="active">active</label>  
-                        <input type="radio" name="chartType" id="recovered" value="recovered"> 
-                        <label for="recovered">recovered</label>  
-                        <input type="radio" name="chartType" id="deaths" value="deaths"> 
-                        <label for="deaths">deaths</label>   
-                    </form>
-                </div>
-                <div>
                     <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                        <label class="btn btn-secondary active">
-                          <input type="radio" name="options" id="option1" autocomplete="off" checked> Active
+                        <label class="btn btn-outline-danger active" id="confirmedlabel">
+                          <input type="radio" name="chartType" id="confirmed" autocomplete="off" value="confirmed" checked> confirmed
                         </label>
-                        <label class="btn btn-secondary">
-                          <input type="radio" name="options" id="option2" autocomplete="off"> Radio
+                        <label class="btn btn-outline-danger">
+                          <input type="radio" name="chartType" id="active" autocomplete="off" value="active"> active
                         </label>
-                        <label class="btn btn-secondary">
-                          <input type="radio" name="options" id="option3" autocomplete="off"> Radio
+                        <label class="btn btn-outline-danger">
+                          <input type="radio" name="chartType" id="recovered" autocomplete="off" value="recovered"> recovered
+                        </label>
+                        <label class="btn btn-outline-danger">
+                            <input type="radio" name="chartType" id="deaths" autocomplete="off" value="deaths"> deaths
                         </label>
                     </div>
                 </div>
+            
             </section>
             <section class="container" id="chartContainer">
                 <canvas id="myChart"></canvas>
