@@ -16,8 +16,9 @@
         </header>
         <main>
             <section>
-                <p id="currentLocation">Retrieving position ...</p>
-                <div id="flag"></div>
+                <p id="currentLocation">Retrieving position ...
+                    <div id="flag"></div>
+                </p>
                 <div class="flower-spinner">
                     <div class="dots-container">
                       <div class="bigger-dot">
@@ -29,11 +30,11 @@
                     <option value="" disabled selected>Select country</option>
                 </select> -->
                 <div class="input-group">
-                    <select class="custom-select" id="countrySelector" style="width: 50%; height: 30px">
+                    <select class="custom-select" id="countrySelector" style="width: 50%">
                       <option disabled selected>Select country</option>
                     </select>
                     <div class="input-group-append">
-                      <button class="btn btn-dark" id="getStats" type="button">Get stats</button>
+                      <button class="btn btn-dark" id="getStats" type="button" disabled>Get stats</button>
                     </div>
                   </div>
                 <!-- <button id="getStats" class="btn btn-outline-dark" disabled>Get stats</button> -->
@@ -56,7 +57,9 @@
             
             </section>
             <section class="container" id="chartContainer">
-                <canvas id="myChart"></canvas>
+                <canvas id="myChart" aria-label="Covid-19 chart" role="img">
+                    <p>Your browser does not support the canvas element</p>
+                </canvas>
             </section>
         </main>
         <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script> -->

@@ -4,6 +4,7 @@
 //Lägg till felmeddelande, t.ex. om nån dataarray är tom eller nåt --> if array.length == 0 --> felmeddelande
 //about
 //statistics
+//spinner while retrieving location
 
 
 
@@ -145,11 +146,16 @@ function buildChart(type) {
       datasets: [
         {
           label: chartData.coronaDatasets[0].country,
-          data: chartData.coronaDatasets[0][type]
+          data: chartData.coronaDatasets[0][type],
+          borderColor: "red",
+          backgroundColor: "rgba(241, 130, 141,0.6)"
+
         },
         {
           label: chartData.coronaDatasets[1].country,
-          data: chartData.coronaDatasets[1][type]
+          data: chartData.coronaDatasets[1][type],
+          borderColor: "black",
+          backgroundColor: "rgba(0, 0, 0, 0.6)"
         }
       ]
     },
@@ -232,7 +238,7 @@ function getCountry(lat, lng) {
     currentPlace = data.countryName
     let flag = flagImgs.find(x => x.country === data.countryName).flag_base64;
     $("#flag").append(`<img src=${flag}>`)
-
+    $(`#countrySelector option:contains("${data.countryName}")`).remove()
   }).fail(function(data) {
       console.log(data);
   });
