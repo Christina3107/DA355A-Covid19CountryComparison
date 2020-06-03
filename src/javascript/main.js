@@ -56,6 +56,7 @@ $(document).ready(function(){
 $("#countrySelector").on("change", function() {
   comparisonCountry = [$("#countrySelector").val(), $("#countrySelector option:selected").text()]
   console.log(comparisonCountry)
+  $("#getStats").attr("disabled", false)
 })
 
 //Show Chart: destroys chart if it exists, retrieves corona statistics for current location and comparison country and populates chart
@@ -226,7 +227,6 @@ function getCountry(lat, lng) {
     let flag = flagImgs.find(x => x.country === data.countryName).flag_base64;
     $("#flag").append(`<img src=${flag}>`)
 
-    $("#getStats").attr("disabled", false)
   }).fail(function(data) {
       console.log(data);
   });
