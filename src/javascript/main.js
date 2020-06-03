@@ -5,6 +5,8 @@
 //about
 //statistics
 //spinner while retrieving location
+//tooltip show only first time --> local storage, first time visitor false
+//get stats disabled if location services denied
 
 
 
@@ -43,6 +45,13 @@ $(document).ready(function(){
   navigator.geolocation.getCurrentPosition(success, error, options);
   getCountries(countryCodes)
   $('#countrySelector').select2();
+  
+});
+
+$("#startButton").on("click", function() {
+  $('html, body').animate({
+      scrollTop: $("#startButton").offset().top
+  }, 800);
 });
 
 //Select country: creates an array with abbreviation and name of comparison country
@@ -234,10 +243,10 @@ function getCountry(lat, lng) {
       url: `${url}`
   }).done(function(data) {
     console.log("Success: ", data)
-    $("#currentLocation").text(`Your current location is ${data.countryName}`)
+    $("#currentLocation").text(`Current location: ${data.countryName}`)
     currentPlace = data.countryName
     let flag = flagImgs.find(x => x.country === data.countryName).flag_base64;
-    $("#flag").append(`<img src=${flag}>`)
+    $("#currentLocation").append(`<img src=${flag}>`)
     $(`#countrySelector option:contains("${data.countryName}")`).remove()
   }).fail(function(data) {
       console.log(data);

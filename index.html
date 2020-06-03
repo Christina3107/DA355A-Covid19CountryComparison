@@ -11,12 +11,41 @@
         <link rel="shortcut icon" type="image/x-icon" href="images/favicon.ico" />
     </head>
     <body>
+        <nav class="navbar navbar-expand-lg sticky-top navbar-dark bg-dark">
+            <a class="navbar-brand" href="#">
+                <img src="images/coronaicon.png" width="30" height="30" class="d-inline-block align-top" alt="Covid-19 icon">
+                CoCoCo
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarText">
+              <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                  <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Resources</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">About</a>
+                </li>
+              </ul>
+              <span class="navbar-text" id="currentLocation">
+                Retrieving position...
+              </span>
+            </div>
+        </nav>
         <header>
-            <h1>Corona Comparison</h1>
+            <div id="title">
+                <h1>Covid-19 Country Comparison</h1>
+                <button type="button" class="btn btn-danger btn-lg" id="startButton">Get started!</button>
+            </div>
+           
         </header>
         <main>
-            <section>
-                <p id="currentLocation">Retrieving position ...
+            <section id="statsSection">
+                <!-- <p id="currentLocation">Retrieving position ...
                     <div id="flag"></div>
                 </p>
                 <div class="flower-spinner">
@@ -25,12 +54,9 @@
                         <div class="smaller-dot"></div>
                       </div>
                     </div>
-                  </div>
-               <!--  <select id="countrySelector">
-                    <option value="" disabled selected>Select country</option>
-                </select> -->
+                </div> -->
                 <div class="input-group">
-                    <select class="custom-select" id="countrySelector" style="width: 50%">
+                    <select class="custom-select" id="countrySelector" style="width: 90%">
                       <option disabled selected>Select country</option>
                     </select>
                     <div class="input-group-append">
@@ -38,7 +64,7 @@
                     </div>
                   </div>
                 <!-- <button id="getStats" class="btn btn-outline-dark" disabled>Get stats</button> -->
-                <div id="chartType">
+                <div id="chartType" class="text-center">
                     <div class="btn-group btn-group-toggle" data-toggle="buttons">
                         <label class="btn btn-outline-danger active" id="confirmedlabel">
                           <input type="radio" name="chartType" id="confirmed" autocomplete="off" value="confirmed" checked> confirmed
@@ -62,6 +88,9 @@
                 </canvas>
             </section>
         </main>
+        <footer class="fixed-bottom footer-dark bg-dark">
+            Some text
+        </footer>
         <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script> -->
         <script type="text/javascript" src="dist/bundle.js"></script>
     </body>
