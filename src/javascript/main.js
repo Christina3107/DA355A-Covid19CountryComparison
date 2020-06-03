@@ -1,13 +1,10 @@
 //To Do:
-//Skapa slotmachine, länder = från country-json???
 //Styling chart
 //Info
 //ev dashboard med olika typer av statistik, t.ex. deaths, active, recovered cases + world?
 //alternativt : byta typ av chart --> skicka med variabel till build chart???
-//ändra datasets: date: {country: cases, country: cases}
 //Lägg till felmeddelande, t.ex. om nån dataarray är tom eller nåt --> if array.length == 0 --> felmeddelande
 //felhantering för select
-//searchable select
 //about
 //statistics
 
@@ -23,14 +20,12 @@ import Chart from '../../node_modules/chart.js/dist/Chart.bundle.js'
 import * as countryData from '../../node_modules/country-json/src/country-by-population.json'
 import * as countryNames from '../../node_modules/country-json/src/country-by-abbreviation.json'
 import * as flags from '../../node_modules/country-json/src/country-by-flag.json'
+import $ from 'jquery';
+import 'select2';
 
 //Loads country names and abbreviations from json-file
 var countryCodes = countryNames.default
 var flagImgs = flags.default
-
-//Search for flag using result from geolocation and add flag to indicate current location!
-let flag = flagImgs[25].flag_base64
-$("#flag").append(`<img src=${flag}>`)
 
 //Data which is used to create charts
 var chartData = {
@@ -54,6 +49,7 @@ $(document).ready(function(){
   console.log("Retrieving position")
   navigator.geolocation.getCurrentPosition(success, error, options);
   getCountries(countryCodes)
+  $('#countrySelector').select2();
 });
 
 //Select country: creates an array with abbreviation and name of comparison country
@@ -227,6 +223,9 @@ function getCountry(lat, lng) {
     console.log("Success: ", data)
     $("#currentLocation").text(`Your current location is ${data.countryName}`)
     currentPlace = data.countryName
+    let flag = flagImgs.find(x => x.country === data.countryName).flag_base64;
+    $("#flag").append(`<img src=${flag}>`)
+
     $("#getStats").attr("disabled", false)
   }).fail(function(data) {
       console.log(data);

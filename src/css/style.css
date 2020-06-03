@@ -7,6 +7,10 @@ html, body {
     width: 80%;
 }
 
+#flag > img {
+  height: 30px;
+}
+
 
 .flower-spinner,  .flower-spinner * {
     box-sizing: border-box;
