@@ -2,19 +2,11 @@
 //Styling chart
 //Info
 //ev dashboard med olika typer av statistik, t.ex. deaths, active, recovered cases + world?
-//alternativt : byta typ av chart --> skicka med variabel till build chart???
 //Lägg till felmeddelande, t.ex. om nån dataarray är tom eller nåt --> if array.length == 0 --> felmeddelande
-//felhantering för select
 //about
 //statistics
 
-//https://api.covid19api.com/total/country/canada?from=2020-03-01T00:00:00Z&to=2020-04-01T00:00:00Z
 
-//API response
-//"Confirmed": 14796,
-//    "Deaths": 158,
-//    "Recovered": 466,
-//    "Active": 14172,
 
 import Chart from '../../node_modules/chart.js/dist/Chart.bundle.js'
 import * as countryData from '../../node_modules/country-json/src/country-by-population.json'
@@ -22,14 +14,15 @@ import * as countryNames from '../../node_modules/country-json/src/country-by-ab
 import * as flags from '../../node_modules/country-json/src/country-by-flag.json'
 import $ from 'jquery';
 import 'select2';
+import 'bootstrap'
 
-//Loads country names and abbreviations from json-file
-var countryCodes = countryNames.default
+
+//Loads country names and abbreviations from json-file --> check whether those have to be global
+var countryCodes = countryNames.default 
 var flagImgs = flags.default
 
 //Data which is used to create charts
 var chartData = {
-  type: "",
   coronaDatasets: []
 }
 
@@ -65,8 +58,10 @@ $("#getStats").on("click", function() {
   if (comparisonChart != null) {
     comparisonChart.destroy()
     console.log("Old chart destroyed")
+    $('input:checked').removeProp('checked');
   }
-
+  $("#chartType").css("display", "inline")
+  $("#confirmed").prop("checked")
   let resultCurrentPlace = getCovidData(currentPlace)
   let resultComparisonCountry = getCovidData(comparisonCountry[0])
   let promisesComplete = $.when(resultCurrentPlace, resultComparisonCountry);
@@ -77,22 +72,30 @@ $("#getStats").on("click", function() {
     
   }).done(function() {
     console.log(chartData)
-    buildChart()
+    buildChart("confirmed")
   })
 })
+
+//Change chart type
+$('input[type="radio"]').on('click change', function() {
+  let type = this.value
+  console.log(this.value);
+  if (comparisonChart != null) {
+    comparisonChart.destroy()
+  }
+  buildChart(type)
+});
 
 //Retrieves the current date, needed to get up to date statistics from the Covid-19 API
 function getTodaysDate() {
   var today = new Date();
   var dd = today.getDate();
-
   var mm = today.getMonth()+1; 
   var yyyy = today.getFullYear();
   if(dd<10) 
   {
       dd='0'+dd;
   } 
-
   if(mm<10) 
   {
       mm='0'+mm;
@@ -101,23 +104,21 @@ function getTodaysDate() {
   return today;
 }
 
-//Creates datasets based on API response which is then used to populate the chart
+//Creates datasets based on API response which are then used to populate the chart
 function populateChartData(result, country) {
   let population = countryData.find(x => x.country === country).population;
   console.log(country, population)
   let dates = []
-  //let cases = []
   let active = []
   let deaths = []
   let confirmed = []
   let recovered = []
   $.each(result, function() {
-    //let perCapita = (this.Cases/population)* 100000
-    //cases.push(perCapita)
-    let activePC = (this.Active/population) * 100000
-    let deathsPC = (this.Deaths/population) * 100000
-    let confirmedPC = (this.Confirmed/population) * 100000
-    let recoveredPC = (this.Recovered/population) * 100000
+    //result per 100 000 inhabitants
+    let activePC = Math.round((this.Active/population) * 100000)
+    let deathsPC = Math.round((this.Deaths/population) * 100000)
+    let confirmedPC = Math.round((this.Confirmed/population) * 100000)
+    let recoveredPC = Math.round((this.Recovered/population) * 100000)
     active.push(activePC)
     deaths.push(deathsPC)
     confirmed.push(confirmedPC)
@@ -127,7 +128,6 @@ function populateChartData(result, country) {
 
   let dataset = {
     country: country,
-    //cases: cases,
     active: active,
     deaths: deaths,
     confirmed: confirmed,
@@ -137,8 +137,8 @@ function populateChartData(result, country) {
   chartData.coronaDatasets.push(dataset)
   }
 
-//Chart builder --> kolla om den kan ta emot en variabel type för att byta mellan active, deaths etc.
-function buildChart() {
+//Chart builder
+function buildChart(type) {
   comparisonChart = new Chart (myChart, {
     type: 'line',
     data: {
@@ -146,17 +146,24 @@ function buildChart() {
       datasets: [
         {
           label: chartData.coronaDatasets[0].country,
-          //data: chartData.coronaDatasets[0].cases
-          data: chartData.coronaDatasets[0].active
+          data: chartData.coronaDatasets[0][type]
         },
         {
           label: chartData.coronaDatasets[1].country,
-          //data: chartData.coronaDatasets[1].cases
-          data: chartData.coronaDatasets[1].active
+          data: chartData.coronaDatasets[1][type]
         }
       ]
     },
-    options: {},
+    options: {
+      title: {
+        display: true,
+        text: "Covid-19 cases per 100 000 inhabitants",
+        fontSize: 20,
+        padding: 20,
+
+
+      }
+    },
   
   })
 
@@ -164,7 +171,7 @@ function buildChart() {
 
 //Geolocation: retrieves name of the current location
 function success(position) {
-  console.log("This is our position: ", position);
+  console.log("This is your position: ", position);
   let lat = position.coords.latitude
   let lng = position.coords.longitude
   getCountry(lat, lng)
@@ -192,9 +199,9 @@ function getCovidData(country) {
 
 //Populates the select list
 function getCountries(countryCodes) {
-  
   $.each(countryCodes, function () {
     let country = {name: this.country, code: this.abbreviation}
+    //check if this is necessary
     countries.push(country)
     $("#countrySelector").append(`<option value=${this.abbreviation}>${this.country}</option>`)
   })

@@ -5,8 +5,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Inlämning 3 - CovidStats</title>
         <link rel="stylesheet" id="stylesheet" type="text/css" href="src/css/style.css">
-        <link href="node_modules/select2/dist/css/select2.min.css" rel="stylesheet" />
         <link href="https://fonts.googleapis.com/css2?family=Montserrat&family=Sacramento&display=swap" rel="stylesheet">
+        <link href="node_modules/select2/dist/css/select2.min.css" rel="stylesheet" />
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
         <link rel="shortcut icon" type="image/x-icon" href="images/favicon.ico" />
     </head>
     <body>
@@ -19,8 +20,8 @@
                 <div id="flag"></div>
                 <select id="countrySelector">
                     <option value="" disabled selected>Select country</option>
-
                 </select>
+              
                 <div class="flower-spinner">
                     <div class="dots-container">
                       <div class="bigger-dot">
@@ -29,6 +30,31 @@
                     </div>
                   </div>
                 <button id="getStats" disabled>Get stats</button>
+                <div id="chartType">
+                    <form>
+                        <input type="radio" name="chartType" id="confirmed" value="confirmed" checked> 
+                        <label for="confirmed">confirmed</label>
+                        <input type="radio" name="chartType" id="active" value="active"> 
+                        <label for="active">active</label>  
+                        <input type="radio" name="chartType" id="recovered" value="recovered"> 
+                        <label for="recovered">recovered</label>  
+                        <input type="radio" name="chartType" id="deaths" value="deaths"> 
+                        <label for="deaths">deaths</label>   
+                    </form>
+                </div>
+                <div>
+                    <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                        <label class="btn btn-secondary active">
+                          <input type="radio" name="options" id="option1" autocomplete="off" checked> Active
+                        </label>
+                        <label class="btn btn-secondary">
+                          <input type="radio" name="options" id="option2" autocomplete="off"> Radio
+                        </label>
+                        <label class="btn btn-secondary">
+                          <input type="radio" name="options" id="option3" autocomplete="off"> Radio
+                        </label>
+                    </div>
+                </div>
             </section>
             <section class="container" id="chartContainer">
                 <canvas id="myChart"></canvas>

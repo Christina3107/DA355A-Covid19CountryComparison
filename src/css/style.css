@@ -1,6 +1,7 @@
 html, body {
     height: 100%;
     font-family: 'Montserrat', sans-serif;
+    padding: 20px;
 }
 
 .container {
@@ -9,6 +10,10 @@ html, body {
 
 #flag > img {
   height: 30px;
+}
+
+#chartType {
+  display: none;
 }
 
 
