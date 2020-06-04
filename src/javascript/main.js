@@ -1,9 +1,9 @@
 //To Do:
 //Styling chart
-//Info
-//about
-//statistics
-//add current location + flag to session storage!!! check in document ready, else use data from session storage!
+//media queries
+//home: responsive chart, container height, width: select, about: jumbotron
+//readme
+
 
 
 import Chart from '../../node_modules/chart.js/dist/Chart.bundle.js'
@@ -36,8 +36,20 @@ let options = {
 
 //On load the current position is retrieved and the select list is populated with countries
 $(document).ready(function(){
-  console.log("Retrieving position")
-  navigator.geolocation.getCurrentPosition(success, error, options);
+  if (sessionStorage.getItem("location") == null) {
+    console.log("Retrieving position")
+    navigator.geolocation.getCurrentPosition(success, error, options);
+  } else {
+    currentPlace = sessionStorage.getItem("location")
+    let flag = sessionStorage.getItem("flag")
+    $(".loader").remove()
+    $("#currentLocation").text(`Current location: ${currentPlace}`)
+    getCountries(countryCodes)
+    $("#currentLocation").append(`<img src=${flag}>`)
+    $(`#countrySelector option:contains("${currentPlace}")`).remove()
+    //gör allt som annars ligger i geolocation
+  }
+  
   $('#countrySelector').select2();
 });
 
@@ -266,7 +278,9 @@ function getCountry(lat, lng) {
     console.log("Success: ", data)
     $("#currentLocation").text(`Current location: ${data.countryName}`)
     currentPlace = data.countryName
+    sessionStorage.setItem("location", currentPlace)
     let flag = flagImgs.find(x => x.country === data.countryName).flag_base64;
+    sessionStorage.setItem("flag", flag)
     $(".loader").remove()
     getCountries(countryCodes)
     $("#currentLocation").append(`<img src=${flag}>`)

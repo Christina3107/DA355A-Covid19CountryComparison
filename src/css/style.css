@@ -20,15 +20,19 @@ header {
 #title > h1 {
   padding-top: 170px;
   font-size: 7vw;
+  text-shadow: 0 0 10px black;
 }
 
 #startButton {
   margin-top: 20px;
 }
 
+#chartContainer {
+  width: 80%;
+  min-height: 600px;
+}
 .container {
     width: 80%;
-    min-height: 600px;
 }
 
 main {
@@ -50,6 +54,15 @@ footer {
   line-height: 40px;
   color: white;
   text-align: center;
+}
+
+footer > a {
+  color: white;
+  text-decoration: none;
+}
+
+footer > a:hover {
+  color: #dc3545;
 }
 
 #chartType {
@@ -92,31 +105,6 @@ footer {
   color: #dc3545;
 }
 
-#resourcesHeading {
-  text-align: center;
-  padding-bottom: 30px;
-}
-
-.card > h3 {
-  padding: 30px 0 0 20px;
-  display: inline;
-}
-
-.card {
-  min-height: 95%;
-}
-
-.card-img-top {
-  height: 50px;
-  width: 50px !important;
-  display: inline-block;
-  margin-right: 10px;
-}
-
-.card-body {
-  height: 190px;
-  padding: 0px 20px 20px 20px;
-}
   /*Quote*/
   .blockquote-wrapper {
     display: block;
@@ -223,4 +211,47 @@ footer {
 @keyframes spin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
+}
+
+/*Resources*/
+#resourcesHeading {
+  text-align: center;
+  padding-bottom: 30px;
+}
+
+.card > h3 {
+  padding: 30px 0 0 20px;
+  display: inline;
+}
+
+.card {
+  min-height: 95%;
+}
+
+.card-img-top {
+  height: 50px;
+  width: 50px !important;
+  display: inline-block;
+  margin-right: 10px;
+}
+
+.card-body {
+  height: 190px;
+  padding: 0px 20px 20px 20px;
+}
+
+/*About*/
+#avatar {
+  height: 30%;
+}
+
+#flexcontainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.jumbotron {
+  height: 530px;
+  background-image: linear-gradient(to right, white, #dc3545);
 }
