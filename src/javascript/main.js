@@ -3,8 +3,7 @@
 //Info
 //about
 //statistics
-//tooltip show only first time --> local storage, first time visitor false
-
+//add current location + flag to session storage!!! check in document ready, else use data from session storage!
 
 
 import Chart from '../../node_modules/chart.js/dist/Chart.bundle.js'
@@ -15,8 +14,6 @@ import $ from 'jquery';
 import 'select2';
 import 'popper.js';
 import 'bootstrap';
-//import * as popper from '../../node_modules/popper.js/dist/popper.min.js'
-
 
 //Loads country names and abbreviations from json-file --> check whether those have to be global
 var countryCodes = countryNames.default 
@@ -61,7 +58,9 @@ $("#countrySelector").on("change", function() {
 
 //Show Chart: destroys chart if it exists, retrieves corona statistics for current location and comparison country and populates chart
 $("#getStats").on("click", function() {
+  //Remove placeholder quote
   $(".blockquote-wrapper").remove()
+  $("#APIError").remove()
   //Scroll down to statistics section when button is clicked
   $('html, body').animate({
     scrollTop: $("#statsSection").offset().top
@@ -75,9 +74,9 @@ $("#getStats").on("click", function() {
     $("label").removeClass("active")
     $("#confirmedlabel").addClass("active")
   }
-  //Display chart type buttons
+  //Display chart type buttons + tooltip for first time visitors
   $("#chartType").css("display", "inline")
-  if(isFirstTimeUser() == true) {
+  if(isFirstTimeVisitor() == true) {
     $('#chartType').popover( {
       placement: 'right',
       trigger: 'focus',
@@ -101,8 +100,8 @@ $("#getStats").on("click", function() {
   })
 })
 
-//Check whether user is first time user, if true tooltip will be displayed
-function isFirstTimeUser() {
+//Check whether user is first time visitor, if true, item is set in local storage
+function isFirstTimeVisitor() {
   if (localStorage.getItem("firstTime") == null) {
     localStorage.setItem("firstTime", true)
     return true
@@ -112,7 +111,7 @@ function isFirstTimeUser() {
 }
 //Change chart type
 $('input[type="radio"]').on('click change', function() {
-  $('#chartType').popover('hide')
+  $('#chartType').popover('dispose')
   let type = this.value
   console.log(this.value);
   if (comparisonChart != null) {
@@ -241,6 +240,9 @@ function getCovidData(country) {
     url: url,
     method: "GET",
     timeout: 0
+  }).fail(function(data) {
+    console.log("API returned error: " + data);
+    $("#chartContainer").append(`<h2 id="APIError">Sorry, could not retrieve any data for the selected country, please select another one!`)
   })
  
 }

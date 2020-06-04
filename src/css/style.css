@@ -1,6 +1,5 @@
 html, body {
     height: 100%;
-    font-family: 'Montserrat', sans-serif;
 }
 
 header {
@@ -88,6 +87,22 @@ footer {
   border-color: black !important;
 }
 
+#APIError {
+  text-align: center;
+  color: #dc3545;
+}
+
+.card > h3 {
+  padding: 20px 0 0 20px;
+}
+
+.card {
+  min-height: 95%;
+}
+
+.card-body {
+  height: 190px;
+}
   /*Quote*/
   .blockquote-wrapper {
     display: block;
