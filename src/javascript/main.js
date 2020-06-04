@@ -5,7 +5,6 @@
 //about
 //statistics
 //tooltip show only first time --> local storage, first time visitor false
-//get stats disabled if location services denied
 
 
 
@@ -44,6 +43,7 @@ $(document).ready(function(){
   $('#countrySelector').select2();
 });
 
+//Scroll down when button is clicked
 $("#startButton").on("click", function() {
   $('html, body').animate({
       scrollTop: $("#startButton").offset().top
@@ -54,23 +54,29 @@ $("#startButton").on("click", function() {
 $("#countrySelector").on("change", function() {
   comparisonCountry = [$("#countrySelector").val(), $("#countrySelector option:selected").text()]
   console.log(comparisonCountry)
+  //Button is enabled when country is selected
   $("#getStats").attr("disabled", false)
 })
 
 //Show Chart: destroys chart if it exists, retrieves corona statistics for current location and comparison country and populates chart
 $("#getStats").on("click", function() {
   $(".blockquote-wrapper").remove()
+  //Scroll down to statistics section when button is clicked
   $('html, body').animate({
     scrollTop: $("#statsSection").offset().top
 }, 800);
   chartData.coronaDatasets = []
+  //Destroy chart if exists
   if (comparisonChart != null) {
     comparisonChart.destroy()
     console.log("Old chart destroyed")
+    //Make confirmed button active
     $("label").removeClass("active")
     $("#confirmedlabel").addClass("active")
   }
+  //Display chart type buttons
   $("#chartType").css("display", "inline")
+  //Get CovidData based on current place and comparison country
   let resultCurrentPlace = getCovidData(currentPlace)
   let resultComparisonCountry = getCovidData(comparisonCountry[0])
   let promisesComplete = $.when(resultCurrentPlace, resultComparisonCountry);
@@ -148,6 +154,11 @@ function populateChartData(result, country) {
 
 //Chart builder
 function buildChart(type) {
+  if (type == "deaths") {
+    var titleText = "Covid-19 deaths per 100 000 inhabitants"
+  } else {
+    var titleText = `Covid-19 ${type} cases per 100 000 inhabitants`
+  }
   comparisonChart = new Chart (myChart, {
     type: 'line',
     data: {
@@ -171,7 +182,7 @@ function buildChart(type) {
     options: {
       title: {
         display: true,
-        text: "Covid-19 cases per 100 000 inhabitants",
+        text: titleText,
         fontSize: 20,
         padding: 20,
 
@@ -205,7 +216,6 @@ function getCovidData(country) {
   console.log(url)
   return $.ajax({
     url: url,
-    //url: `https://api.covid19api.com/dayone/country/${country}/status/deaths/live`,
     method: "GET",
     timeout: 0
   })
@@ -221,21 +231,6 @@ function getCountries(countryCodes) {
     $("#countrySelector").append(`<option value=${this.abbreviation}>${this.country}</option>`)
   })
 }
-
-//Countries API call
-/* function getCountries() {
-  return $.ajax({
-    url: `https://api.covid19api.com/countries`,
-    method: "GET",
-    timeout: 0
-  }).done(function(result) {
-    console.log(result)
-    countries = result
-    $.each(result, function() {
-      $("#countrySelector").append(`<option value=${this.Slug}>${this.Country}</option>`)
-    })
-  })
-} */
 
 //Geolocaton API call
 function getCountry(lat, lng) {
