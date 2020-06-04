@@ -72,13 +72,15 @@ footer {
 
 .select2-selection__rendered {
   line-height: 35px !important;
+  text-align: left;
 }
 
 .select2-container .select2-selection--single {
   height: 38px !important;
   border-top-right-radius: 0 !important;
   border-bottom-right-radius: 0 !important;
-  border-color: black !important;
+  border-color: #6C757D !important;
+  text-align: left;
 }
 
 .select2-selection__arrow {
@@ -88,7 +90,7 @@ footer {
 
   /*Quote*/
   .blockquote-wrapper {
-    display: flex;
+    display: block;
     padding: 0 20px;
  }
  

@@ -1,7 +1,6 @@
 //To Do:
 //Styling chart
 //Info
-//Lägg till felmeddelande, t.ex. om nån dataarray är tom eller nåt --> if array.length == 0 --> felmeddelande
 //about
 //statistics
 //tooltip show only first time --> local storage, first time visitor false
@@ -14,7 +13,9 @@ import * as countryNames from '../../node_modules/country-json/src/country-by-ab
 import * as flags from '../../node_modules/country-json/src/country-by-flag.json'
 import $ from 'jquery';
 import 'select2';
+import 'popper.js';
 import 'bootstrap';
+//import * as popper from '../../node_modules/popper.js/dist/popper.min.js'
 
 
 //Loads country names and abbreviations from json-file --> check whether those have to be global
@@ -76,6 +77,15 @@ $("#getStats").on("click", function() {
   }
   //Display chart type buttons
   $("#chartType").css("display", "inline")
+  if(isFirstTimeUser() == true) {
+    $('#chartType').popover( {
+      placement: 'right',
+      trigger: 'focus',
+      content: 'Use the buttons to switch between different datasets.'
+    })
+    $('#chartType').popover('show')
+  }
+  
   //Get CovidData based on current place and comparison country
   let resultCurrentPlace = getCovidData(currentPlace)
   let resultComparisonCountry = getCovidData(comparisonCountry[0])
@@ -91,8 +101,18 @@ $("#getStats").on("click", function() {
   })
 })
 
+//Check whether user is first time user, if true tooltip will be displayed
+function isFirstTimeUser() {
+  if (localStorage.getItem("firstTime") == null) {
+    localStorage.setItem("firstTime", true)
+    return true
+  } else {
+    return false
+  }
+}
 //Change chart type
 $('input[type="radio"]').on('click change', function() {
+  $('#chartType').popover('hide')
   let type = this.value
   console.log(this.value);
   if (comparisonChart != null) {
@@ -159,6 +179,11 @@ function buildChart(type) {
   } else {
     var titleText = `Covid-19 ${type} cases per 100 000 inhabitants`
   }
+  if (chartData.coronaDatasets[1][type].length == 0) {
+    var comparisonLabel = `No data for ${chartData.coronaDatasets[1].country} available.`
+  } else {
+    var comparisonLabel = chartData.coronaDatasets[1].country
+  }
   comparisonChart = new Chart (myChart, {
     type: 'line',
     data: {
@@ -172,7 +197,7 @@ function buildChart(type) {
 
         },
         {
-          label: chartData.coronaDatasets[1].country,
+          label: comparisonLabel,
           data: chartData.coronaDatasets[1][type],
           borderColor: "black",
           backgroundColor: "rgba(0, 0, 0, 0.6)"
@@ -185,8 +210,6 @@ function buildChart(type) {
         text: titleText,
         fontSize: 20,
         padding: 20,
-
-
       }
     },
   
