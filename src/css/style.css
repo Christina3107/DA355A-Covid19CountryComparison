@@ -92,16 +92,30 @@ footer {
   color: #dc3545;
 }
 
+#resourcesHeading {
+  text-align: center;
+  padding-bottom: 30px;
+}
+
 .card > h3 {
-  padding: 20px 0 0 20px;
+  padding: 30px 0 0 20px;
+  display: inline;
 }
 
 .card {
   min-height: 95%;
 }
 
+.card-img-top {
+  height: 50px;
+  width: 50px !important;
+  display: inline-block;
+  margin-right: 10px;
+}
+
 .card-body {
   height: 190px;
+  padding: 0px 20px 20px 20px;
 }
   /*Quote*/
   .blockquote-wrapper {
