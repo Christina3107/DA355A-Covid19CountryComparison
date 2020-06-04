@@ -11,6 +11,11 @@ header {
   height: 500px;
   color: white;
   text-align: center;
+  box-shadow: 0 0 15px black;
+}
+
+.navbar {
+  box-shadow: 0 0 15px black;
 }
 
 #title > h1 {
@@ -24,17 +29,21 @@ header {
 
 .container {
     width: 80%;
-    height: 600px;
+    min-height: 600px;
 }
 
 main {
-  padding: 20px;
+  padding: 40px 20px 20px 20px;
 }
 
 #currentLocation > img {
   height: 15px;
   display: inline-block;
   padding-left: 10px; 
+}
+
+#statsSection {
+  text-align: center;
 }
 
 footer {
@@ -49,10 +58,6 @@ footer {
   text-align: center;
 }
 
-.banner-img {
-  width: 100%;
-}
-
 #getStats {
   width: 100px;
 }
@@ -64,8 +69,6 @@ footer {
   width: 50% !important;
   flex-wrap: nowrap !important;
 }
-
-/*kolle button grup display: inline-flex... det är det som gör att de inte centreras! */
 
 .select2-selection__rendered {
   line-height: 35px !important;
@@ -83,116 +86,110 @@ footer {
   border-color: black !important;
 }
 
-
-.flower-spinner,  .flower-spinner * {
-    box-sizing: border-box;
-    display: none;
-  }
-
-  .flower-spinner {
-    height: 70px;
-    width: 70px;
+  /*Quote*/
+  .blockquote-wrapper {
     display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    display: none;
-  }
-
-  .flower-spinner .dots-container {
-    height: calc(70px / 7);
-    width: calc(70px / 7);
-  }
-
-  .flower-spinner .smaller-dot {
-    background: #ff1d5e;
-    height: 100%;
-    width: 100%;
-    border-radius: 50%;
-    animation: flower-spinner-smaller-dot-animation 2.5s 0s infinite both;
-
-  }
-
-  .flower-spinner .bigger-dot {
-    background: #ff1d5e;
-    height: 100%;
-    width: 100%;
-    padding: 10%;
-    border-radius: 50%;
-    animation: flower-spinner-bigger-dot-animation 2.5s 0s infinite both;
-  }
-
-  @keyframes flower-spinner-bigger-dot-animation {
-    0%, 100% {
-      box-shadow: rgb(255, 29, 94) 0px 0px 0px,
-      rgb(255, 29, 94) 0px 0px 0px,
-      rgb(255, 29, 94) 0px 0px 0px,
-      rgb(255, 29, 94) 0px 0px 0px,
-      rgb(255, 29, 94) 0px 0px 0px,
-      rgb(255, 29, 94) 0px 0px 0px,
-      rgb(255, 29, 94) 0px 0px 0px,
-      rgb(255, 29, 94) 0px 0px 0px;
+    padding: 0 20px;
+ }
+ 
+ /* Blockquote main style */
+ .blockquote {
+     position: relative;
+     font-family: 'Barlow Condensed', sans-serif;
+     max-width: 620px;
+     margin: 80px auto;
+     align-self: center;
+ }
+ 
+ /* Blockquote header */
+ .blockquote h1 {
+     font-family: 'Abril Fatface', cursive;
+     position: relative; /* for pseudos */
+     color: #dc3545;
+     font-size: 2.8rem;
+     font-weight: normal;
+     line-height: 1;
+     margin: 0;
+     border: 2px solid #fff;
+     border: solid 2px;
+     border-radius:20px;
+     padding: 25px;
+     text-align: center;
+ }
+ 
+ /* Blockquote right double quotes */
+ .blockquote h1:after {
+     content:"";
+     position: absolute;
+     border: 2px solid #dc3545;
+     border-radius: 0 50px 0 0;
+     width: 60px;
+     height: 60px;
+     bottom: -60px;
+     left: 50px;
+     border-bottom: none;
+     border-left: none;
+     z-index: 3; 
+ }
+ 
+ .blockquote h1:before {
+     content:"";
+     position: absolute;
+     width: 80px;
+     border: 6px solid white;
+     bottom: -3px;
+     left: 50px;
+     z-index: 2;
+ }
+ 
+ /* increase header size after 600px */
+ @media all and (min-width: 600px) {
+     .blockquote h1 {
+         font-size: 3rem;
+         line-height: 1.2;
     }
+ 
+ }
+ 
+ /* Blockquote subheader */
+ .blockquote h4 {
+     position: relative;
+     color: #000000;
+     font-size: 1.3rem;
+     font-weight: 400;
+     line-height: 1.2;
+     margin: 0;
+     padding-top: 15px;
+     z-index: 1;
+     margin-left:150px;
+     padding-left:12px;
+ }
+ 
+  
+ .blockquote h4:first-letter {
+   margin-left:-12px;
+ }
 
-    50% {
-      transform: rotate(180deg);
-    }
+ /*Loader*/
+ .loader {
+  border: 4px solid grey;
+  border-radius: 50%;
+  border-top: 4px solid #dc3545;
+  width: 30px;
+  height: 30px;
+  -webkit-animation: spin 2s linear infinite; /* Safari */
+  animation: spin 2s linear infinite;
+  display: inline-block;
+  margin-left: 10px;
+}
 
-    25%, 75% {
-      box-shadow: rgb(255, 29, 94) 26px 0px 0px,
-      rgb(255, 29, 94) -26px 0px 0px,
-      rgb(255, 29, 94) 0px 26px 0px,
-      rgb(255, 29, 94) 0px -26px 0px,
-      rgb(255, 29, 94) 19px -19px 0px,
-      rgb(255, 29, 94) 19px 19px 0px,
-      rgb(255, 29, 94) -19px -19px 0px,
-      rgb(255, 29, 94) -19px 19px 0px;
-    }
+/* Safari */
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
 
-    100% {
-      transform: rotate(360deg);
-      box-shadow: rgb(255, 29, 94) 0px 0px 0px,
-      rgb(255, 29, 94) 0px 0px 0px,
-      rgb(255, 29, 94) 0px 0px 0px,
-      rgb(255, 29, 94) 0px 0px 0px,
-      rgb(255, 29, 94) 0px 0px 0px,
-      rgb(255, 29, 94) 0px 0px 0px,
-      rgb(255, 29, 94) 0px 0px 0px,
-      rgb(255, 29, 94) 0px 0px 0px;
-    }
-  }
-
-  @keyframes flower-spinner-smaller-dot-animation {
-    0%, 100% {
-      box-shadow: rgb(255, 29, 94) 0px 0px 0px,
-      rgb(255, 29, 94) 0px 0px 0px,
-      rgb(255, 29, 94) 0px 0px 0px,
-      rgb(255, 29, 94) 0px 0px 0px,
-      rgb(255, 29, 94) 0px 0px 0px,
-      rgb(255, 29, 94) 0px 0px 0px,
-      rgb(255, 29, 94) 0px 0px 0px,
-      rgb(255, 29, 94) 0px 0px 0px;
-    }
-
-    25%, 75% {
-      box-shadow: rgb(255, 29, 94) 14px 0px 0px,
-      rgb(255, 29, 94) -14px 0px 0px,
-      rgb(255, 29, 94) 0px 14px 0px,
-      rgb(255, 29, 94) 0px -14px 0px,
-      rgb(255, 29, 94) 10px -10px 0px,
-      rgb(255, 29, 94) 10px 10px 0px,
-      rgb(255, 29, 94) -10px -10px 0px,
-      rgb(255, 29, 94) -10px 10px 0px;
-    }
-
-    100% {
-      box-shadow: rgb(255, 29, 94) 0px 0px 0px,
-      rgb(255, 29, 94) 0px 0px 0px,
-      rgb(255, 29, 94) 0px 0px 0px,
-      rgb(255, 29, 94) 0px 0px 0px,
-      rgb(255, 29, 94) 0px 0px 0px,
-      rgb(255, 29, 94) 0px 0px 0px,
-      rgb(255, 29, 94) 0px 0px 0px,
-      rgb(255, 29, 94) 0px 0px 0px;
-    }
-  }
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}

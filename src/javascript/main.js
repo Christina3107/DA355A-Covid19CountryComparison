@@ -4,7 +4,6 @@
 //Lägg till felmeddelande, t.ex. om nån dataarray är tom eller nåt --> if array.length == 0 --> felmeddelande
 //about
 //statistics
-//spinner while retrieving location
 //tooltip show only first time --> local storage, first time visitor false
 //get stats disabled if location services denied
 
@@ -40,12 +39,9 @@ let options = {
 
 //On load the current position is retrieved and the select list is populated with countries
 $(document).ready(function(){
-  //lägg till spinner
   console.log("Retrieving position")
   navigator.geolocation.getCurrentPosition(success, error, options);
-  getCountries(countryCodes)
   $('#countrySelector').select2();
-  
 });
 
 $("#startButton").on("click", function() {
@@ -63,6 +59,10 @@ $("#countrySelector").on("change", function() {
 
 //Show Chart: destroys chart if it exists, retrieves corona statistics for current location and comparison country and populates chart
 $("#getStats").on("click", function() {
+  $(".blockquote-wrapper").remove()
+  $('html, body').animate({
+    scrollTop: $("#statsSection").offset().top
+}, 800);
   chartData.coronaDatasets = []
   if (comparisonChart != null) {
     comparisonChart.destroy()
@@ -194,6 +194,7 @@ function success(position) {
 function error(err) {
   console.warn("Something went wrong: ", err.message);
   $("#currentLocation").text(`You have to activate location services in order to use this website. Please reload the page!`)
+  $("#currentLocation").css("color", "#dc3545")
 
 }
 
@@ -246,10 +247,13 @@ function getCountry(lat, lng) {
     $("#currentLocation").text(`Current location: ${data.countryName}`)
     currentPlace = data.countryName
     let flag = flagImgs.find(x => x.country === data.countryName).flag_base64;
+    $(".loader").remove()
+    getCountries(countryCodes)
     $("#currentLocation").append(`<img src=${flag}>`)
     $(`#countrySelector option:contains("${data.countryName}")`).remove()
   }).fail(function(data) {
       console.log(data);
+      $("#getStats").attr("disabled", true)
   });
 }
 

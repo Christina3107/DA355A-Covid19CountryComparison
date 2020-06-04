@@ -6,6 +6,7 @@
         <title>Inlämning 3 - CovidStats</title>
         <link rel="stylesheet" id="stylesheet" type="text/css" href="src/css/style.css">
         <link href="https://fonts.googleapis.com/css2?family=Montserrat&family=Sacramento&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap" rel="stylesheet">
         <link href="node_modules/select2/dist/css/select2.min.css" rel="stylesheet" />
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
         <link rel="shortcut icon" type="image/x-icon" href="images/favicon.ico" />
@@ -32,8 +33,9 @@
                 </li>
               </ul>
               <span class="navbar-text" id="currentLocation">
-                Retrieving position...
+                Retrieving position... 
               </span>
+              <div class="loader"></div>
             </div>
         </nav>
         <header>
@@ -41,20 +43,9 @@
                 <h1>Covid-19 Country Comparison</h1>
                 <button type="button" class="btn btn-danger btn-lg" id="startButton">Get started!</button>
             </div>
-           
         </header>
         <main>
             <section id="statsSection">
-                <!-- <p id="currentLocation">Retrieving position ...
-                    <div id="flag"></div>
-                </p>
-                <div class="flower-spinner">
-                    <div class="dots-container">
-                      <div class="bigger-dot">
-                        <div class="smaller-dot"></div>
-                      </div>
-                    </div>
-                </div> -->
                 <div class="input-group">
                     <select class="custom-select" id="countrySelector" style="width: 90%">
                       <option disabled selected>Select country</option>
@@ -80,9 +71,16 @@
                         </label>
                     </div>
                 </div>
-            
             </section>
             <section class="container" id="chartContainer">
+                <div class="blockquote-wrapper">
+                    <div class="blockquote">
+                      <h1>
+                       Statistics <span style="color:#000000">are like a bikini: what they</span> reveal <span style="color:#000000">is</span> suggestive <span style="color:#000000">but what they</span> hide <span style="color:#000000">is</span> vital.</span>
+                       </h1>
+                      <h4>&mdash;Aaron Levenstein<br></h4>
+                    </div>
+                </div>
                 <canvas id="myChart" aria-label="Covid-19 chart" role="img">
                     <p>Your browser does not support the canvas element</p>
                 </canvas>
