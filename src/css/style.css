@@ -357,4 +357,8 @@ footer > a:hover {
   #aboutinfo {
     width: 90vw;
   }
+
+  #APIError > img {
+    width: 80%;
+  }
 }

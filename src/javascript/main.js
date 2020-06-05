@@ -283,7 +283,7 @@ function getCovidData(country) {
     timeout: 0
   }).fail(function(data) {
     console.log("API returned error: " + data);
-    $("#chartType").append(`<h2 id="APIError">Sorry, could not retrieve any data for the selected country, please select another one!`)
+    $("#chartType").append(`<div id="APIError"><h2 id="APIError">Sorry, could not retrieve any data for the selected country, please select another one!</h2><img src='images/404.png' alt='404-avatar'></div>`)
     $("#datasource").hide()
   })
 }
