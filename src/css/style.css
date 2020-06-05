@@ -22,6 +22,8 @@ header {
   padding-top: 170px;
   font-size: 7vw;
   text-shadow: 0 0 10px black;
+  padding-left: 10px;
+  padding-right: 10px;
 }
 
 #startButton {
@@ -30,13 +32,17 @@ header {
 
 #chartContainer {
   width: 90%;
-  min-height: 800px;
+  min-height: 650px;
 }
 
 #canvas-wrapper {
   position: relative; 
   height:80vh; 
   width:80vw;
+}
+
+#datasource {
+  padding-top: 10px;
 }
 
 canvas {
@@ -55,10 +61,20 @@ main {
 }
 
 #currentLocation > img {
-  height: 15px;
+  height: 25px;
   display: inline-block;
   padding-left: 10px; 
 }
+
+#currentLocation {
+  padding: 10px;
+}
+
+#subtitle {
+  font-weight: lighter;
+  padding: 0 10px;
+}
+
 
 #statsSection {
   text-align: center;
@@ -276,6 +292,18 @@ footer > a:hover {
 /*Tablet*/
 @media screen and (max-width: 900px) {
 
+  #chartContainer {
+    height: 700px;
+  }
+  
+  #title > h1 {
+    font-size: 60px;
+  }
+
+  #subtitle {
+    font-size: 20px;
+  }
+
   .input-group {
     width: 95% !important;
   }
@@ -296,7 +324,9 @@ footer > a:hover {
 
 /*Mobile*/
 @media screen and (max-width: 600px) {
-
+  #title > h1 {
+    font-size: 40px;
+  }
 
   main {
     padding-left: 0px;
@@ -304,7 +334,7 @@ footer > a:hover {
   }
 
   #chartContainer {
-    height: max-content;
+    height: 750px;
     padding-bottom: 30px;
   }
 

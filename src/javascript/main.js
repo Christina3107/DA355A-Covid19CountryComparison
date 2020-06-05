@@ -1,5 +1,5 @@
 //To Do:
-//readme
+//testa npm install
 
 
 
@@ -107,8 +107,14 @@ $("#getStats").on("click", function() {
   //Display chart type buttons + tooltip for first time visitors
   $("#chartType").css("display", "inline")
   if(isFirstTimeVisitor() == true) {
+    if($(window).width() < 600) {
+      var popPlace
+      popPlace = "bottom"
+    } else {
+      popPlace = "right"
+    }
     $('#chartType').popover( {
-      placement: 'right',
+      placement: popPlace,
       trigger: 'focus',
       content: 'Use the buttons to switch between different datasets.'
     })

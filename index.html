@@ -31,23 +31,24 @@
                   <a class="nav-link" href="about.html">About</a>
                 </li>
               </ul>
-              <span class="navbar-text" id="currentLocation">
-                Retrieving position... 
-              </span>
-              <div class="loader"></div>
-            </div>
         </nav>
         <header>
             <div id="title">
                 <h1>Covid-19 Country Comparison</h1>
+                <h4 id="subtitle">Compare up-to-date Covid-19 statistics for your current location with a country of your choice!</h4>
                 <button type="button" class="btn btn-danger btn-lg" id="startButton">Get started!</button>
             </div>
         </header>
         <main>
             <section id="statsSection">
+                <h3 id="currentLocation">
+                Retrieving position...
+                <div class="loader"></div>
+                </div>
+                </h3>
                 <div class="input-group">
                     <select class="custom-select" id="countrySelector" style="width: 90%">
-                      <option disabled selected>Select country</option>
+                      <option disabled selected>Select country for comparison</option>
                     </select>
                     <div class="input-group-append">
                       <button class="btn btn-dark" id="getStats" type="button" disabled>Get stats!</button>
@@ -83,6 +84,7 @@
                     <canvas id="myChart" aria-label="Covid-19 chart" role="img">
                         <p>Your browser does not support the canvas element</p>
                     </canvas>
+                    <p id="datasource">Data source: <a href="https://github.com/CSSEGISandData/COVID-19" target="blank">Johns Hopkins University Center for Systems Science and Engineering (JHU CSSE)</a>. Accessed via the <a href="https://covid19api.com/" target="blank">Covid-19 API</a>.</p>
                 </div>
             </section>
         </main>

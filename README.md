@@ -1,5 +1,5 @@
 # Corona Country Comparison (Inlämningsuppgift 3 i kursen "Flerplattformsapplikationer med webbtekniker" vid MAU)
-This website was created as the final project of the DA355A Multi-platform application course at Malmö University. The main purpose of this site is to visualize data retrieved from the Covid-19 API in a meaningful way. The user can select a country, then a comparison of Covid-19 cases per 100 000 inhabitants between the chosen cuntry and the user's current location is visualized.
+This website was created as the final project of the DA355A Multi-platform application course at Malmö University. The main purpose of this site is to visualize data retrieved from the Covid-19 API in a meaningful way. The user can select a country, then a comparison of Covid-19 cases per 100 000 inhabitants between the chosen country and the user's current location is visualized.
 
 ## Getting Started
 
