@@ -1,5 +1,6 @@
 html, body {
     height: 100%;
+    width: 100%;
 }
 
 header {
@@ -29,7 +30,21 @@ header {
 
 #chartContainer {
   width: 80%;
-  min-height: 600px;
+  min-height: 800px;
+}
+
+#canvas-wrapper {
+  position: relative; 
+  height:100vh; 
+  width:80vw;
+}
+
+canvas {
+  padding-left: 0;
+  padding-right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
 }
 .container {
     width: 80%;
@@ -254,4 +269,42 @@ footer > a:hover {
 .jumbotron {
   height: 530px;
   background-image: linear-gradient(to right, white, red);
+}
+
+
+
+/*Tablet*/
+@media screen and (max-width: 900px) {
+
+  .input-group {
+    width: 95% !important;
+  }
+}
+
+
+/*Mobile*/
+@media screen and (max-width: 600px) {
+
+
+  main {
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+
+  #chartContainer {
+    width: 90%;
+    height: max-content;
+    padding-bottom: 30px;
+  }
+
+  .blockquote > h1 {
+    font-size: 10vw;
+  }
+  #canvas-wrapper {
+    height: 80vh;
+  }
+
+  .blockquote > h4 {
+    font-size: 4vw;
+  }
 }

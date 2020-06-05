@@ -49,8 +49,30 @@ $(document).ready(function(){
     $(`#countrySelector option:contains("${currentPlace}")`).remove()
     //gör allt som annars ligger i geolocation
   }
-  
+  var winWidth =  $(window).width();
+  var maxWidth = 600;
+
+  //if the window width is less than the maxWidth pixels on document loading
+  if(winWidth < maxWidth){//begin if then
+  //add class to button group        
+    $(".btn-group").addClass("btn-group-sm");
+  }
+  $("#canvas-wrapper").hide()
   $('#countrySelector').select2();
+});
+
+//Change button group on resize
+$(window).resize(function(){
+   var winWidth =  $(window).width();
+   var maxWidth = 600;    
+
+if(winWidth < maxWidth){       
+  $(".btn-group").addClass("btn-group-sm");
+
+  } else{
+    $(".btn-group").removeClass("btn-group-sm");
+
+   }
 });
 
 //Scroll down when button is clicked
@@ -72,6 +94,7 @@ $("#countrySelector").on("change", function() {
 $("#getStats").on("click", function() {
   //Remove placeholder quote
   $(".blockquote-wrapper").remove()
+  $("#canvas-wrapper").show()
   $("#APIError").remove()
   //Scroll down to statistics section when button is clicked
   $('html, body').animate({
@@ -221,7 +244,9 @@ function buildChart(type) {
         text: titleText,
         fontSize: 20,
         padding: 20,
-      }
+      },
+      responsive: true,
+      maintainAspectRatio: false,
     },
   
   })
