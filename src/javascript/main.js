@@ -1,7 +1,6 @@
 //To Do:
 //Styling chart
-//media queries
-//home: responsive chart, container height, width: select, about: jumbotron
+//about: jumbotron
 //readme
 
 

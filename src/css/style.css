@@ -29,13 +29,13 @@ header {
 }
 
 #chartContainer {
-  width: 80%;
+  width: 90%;
   min-height: 800px;
 }
 
 #canvas-wrapper {
   position: relative; 
-  height:100vh; 
+  height:80vh; 
   width:80vw;
 }
 
@@ -257,7 +257,7 @@ footer > a:hover {
 
 /*About*/
 #avatar {
-  height: 30%;
+  width: 40%;
 }
 
 #flexcontainer {
@@ -279,6 +279,18 @@ footer > a:hover {
   .input-group {
     width: 95% !important;
   }
+
+  #flexcontainer {
+    align-items: center;
+  }
+
+  #aboutinfo {
+    width: 40vw;
+  }
+
+  .btnlink {
+    margin-bottom: 20px;
+  }
 }
 
 
@@ -292,7 +304,6 @@ footer > a:hover {
   }
 
   #chartContainer {
-    width: 90%;
     height: max-content;
     padding-bottom: 30px;
   }
@@ -306,5 +317,13 @@ footer > a:hover {
 
   .blockquote > h4 {
     font-size: 4vw;
+  }
+
+  #flexcontainer {
+    flex-direction: column;
+  }
+
+  #aboutinfo {
+    width: 90vw;
   }
 }
