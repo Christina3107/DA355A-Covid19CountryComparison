@@ -253,5 +253,5 @@ footer > a:hover {
 
 .jumbotron {
   height: 530px;
-  background-image: linear-gradient(to right, white, #dc3545);
+  background-image: linear-gradient(to right, white, red);
 }
