@@ -1,6 +1,4 @@
 //To Do:
-//Styling chart
-//about: jumbotron
 //readme
 
 
@@ -17,7 +15,9 @@ import 'bootstrap';
 //Loads country names and abbreviations from json-file --> check whether those have to be global
 var countryCodes = countryNames.default 
 var flagImgs = flags.default
-
+let options = {
+  timeout: 5000
+  }
 //Data which is used to create charts
 var chartData = {
   coronaDatasets: []
@@ -28,10 +28,6 @@ var comparisonChart = null
 var countries = []
 var currentPlace = ""
 var comparisonCountry = ""
-let myChart = document.getElementById('myChart').getContext('2d');
-let options = {
-  timeout: 5000
-}
 
 //On load the current position is retrieved and the select list is populated with countries
 $(document).ready(function(){
@@ -207,6 +203,8 @@ function populateChartData(result, country) {
 
 //Chart builder
 function buildChart(type) {
+  let myChart = document.getElementById('myChart').getContext('2d');
+  
   if (type == "deaths") {
     var titleText = "Covid-19 deaths per 100 000 inhabitants"
   } else {
@@ -246,6 +244,11 @@ function buildChart(type) {
       },
       responsive: true,
       maintainAspectRatio: false,
+      legend: {
+        labels: {
+          fontSize: 16,
+        }
+      }
     },
   
   })
