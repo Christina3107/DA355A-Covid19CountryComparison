@@ -1,8 +1,3 @@
-//To Do:
-//testa npm install
-
-
-
 import Chart from '../../node_modules/chart.js/dist/Chart.bundle.js'
 import * as countryData from '../../node_modules/country-json/src/country-by-population.json'
 import * as countryNames from '../../node_modules/country-json/src/country-by-abbreviation.json'
@@ -90,6 +85,7 @@ $("#getStats").on("click", function() {
   //Remove placeholder quote
   $(".blockquote-wrapper").remove()
   $("#canvas-wrapper").show()
+  $("#datasource").show()
   $("#APIError").remove()
   //Scroll down to statistics section when button is clicked
   $('html, body').animate({
@@ -287,9 +283,9 @@ function getCovidData(country) {
     timeout: 0
   }).fail(function(data) {
     console.log("API returned error: " + data);
-    $("#chartContainer").append(`<h2 id="APIError">Sorry, could not retrieve any data for the selected country, please select another one!`)
+    $("#chartType").append(`<h2 id="APIError">Sorry, could not retrieve any data for the selected country, please select another one!`)
+    $("#datasource").hide()
   })
- 
 }
 
 //Populates the select list

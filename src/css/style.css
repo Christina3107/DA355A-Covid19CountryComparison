@@ -134,6 +134,7 @@ footer > a:hover {
 #APIError {
   text-align: center;
   color: #dc3545;
+  padding: 40px;
 }
 
   /*Quote*/
@@ -295,7 +296,7 @@ footer > a:hover {
   #chartContainer {
     height: 700px;
   }
-  
+
   #title > h1 {
     font-size: 60px;
   }
