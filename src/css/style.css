@@ -1,8 +1,359 @@
 html, body {
     height: 100%;
-    font-family: 'Montserrat', sans-serif;
+    width: 100%;
 }
 
+header {
+  background-image: url(../../images/coronavirus-banner-new.jpg);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 500px;
+  color: white;
+  text-align: center;
+  box-shadow: 0 0 15px black;
+}
+
+.navbar {
+  box-shadow: 0 0 15px black;
+}
+
+#title > h1 {
+  padding-top: 170px;
+  font-size: 7vw;
+  text-shadow: 0 0 10px black;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+#startButton {
+  margin-top: 20px;
+}
+
+#chartContainer {
+  width: 90%;
+  min-height: 650px;
+}
+
+#canvas-wrapper {
+  position: relative; 
+  height:80vh; 
+  width:80vw;
+}
+
+#datasource {
+  padding-top: 10px;
+}
+
+canvas {
+  padding-left: 0;
+  padding-right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
 .container {
     width: 80%;
+}
+
+main {
+  padding: 40px 20px 20px 20px;
+}
+
+#currentLocation > img {
+  height: 25px;
+  display: inline-block;
+  padding-left: 10px; 
+}
+
+#currentLocation {
+  padding: 10px;
+}
+
+#subtitle {
+  font-weight: lighter;
+  padding: 0 10px;
+}
+
+
+#statsSection {
+  text-align: center;
+}
+
+footer {
+  height: 40px;
+  line-height: 40px;
+  color: white;
+  text-align: center;
+}
+
+footer > a {
+  color: white;
+  text-decoration: none;
+}
+
+footer > a:hover {
+  color: #dc3545;
+}
+
+#chartType {
+  display: none;
+  text-align: center;
+}
+
+#getStats {
+  width: 100px;
+}
+
+.input-group {
+  margin-bottom: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50% !important;
+  flex-wrap: nowrap !important;
+}
+
+.select2-selection__rendered {
+  line-height: 35px !important;
+  text-align: left;
+}
+
+.select2-container .select2-selection--single {
+  height: 38px !important;
+  border-top-right-radius: 0 !important;
+  border-bottom-right-radius: 0 !important;
+  border-color: #6C757D !important;
+  text-align: left;
+}
+
+.select2-selection__arrow {
+  height: 35px !important;
+  border-color: black !important;
+}
+
+#APIError {
+  text-align: center;
+  color: #dc3545;
+}
+
+  /*Quote*/
+  .blockquote-wrapper {
+    display: block;
+    padding: 0 20px;
+ }
+ 
+ /* Blockquote main style */
+ .blockquote {
+     position: relative;
+     font-family: 'Barlow Condensed', sans-serif;
+     max-width: 620px;
+     margin: 80px auto;
+     align-self: center;
+ }
+ 
+ /* Blockquote header */
+ .blockquote h1 {
+     font-family: 'Abril Fatface', cursive;
+     position: relative; /* for pseudos */
+     color: #dc3545;
+     font-size: 2.8rem;
+     font-weight: normal;
+     line-height: 1;
+     margin: 0;
+     border: 2px solid #fff;
+     border: solid 2px;
+     border-radius:20px;
+     padding: 25px;
+     text-align: center;
+ }
+ 
+ /* Blockquote right double quotes */
+ .blockquote h1:after {
+     content:"";
+     position: absolute;
+     border: 2px solid #dc3545;
+     border-radius: 0 50px 0 0;
+     width: 60px;
+     height: 60px;
+     bottom: -60px;
+     left: 50px;
+     border-bottom: none;
+     border-left: none;
+     z-index: 3; 
+ }
+ 
+ .blockquote h1:before {
+     content:"";
+     position: absolute;
+     width: 80px;
+     border: 6px solid white;
+     bottom: -3px;
+     left: 50px;
+     z-index: 2;
+ }
+ 
+ /* increase header size after 600px */
+ @media all and (min-width: 600px) {
+     .blockquote h1 {
+         font-size: 3rem;
+         line-height: 1.2;
+    }
+ 
+ }
+ 
+ /* Blockquote subheader */
+ .blockquote h4 {
+     position: relative;
+     color: #000000;
+     font-size: 1.3rem;
+     font-weight: 400;
+     line-height: 1.2;
+     margin: 0;
+     padding-top: 15px;
+     z-index: 1;
+     margin-left:150px;
+     padding-left:12px;
+ }
+ 
+  
+ .blockquote h4:first-letter {
+   margin-left:-12px;
+ }
+
+ /*Loader*/
+ .loader {
+  border: 4px solid grey;
+  border-radius: 50%;
+  border-top: 4px solid #dc3545;
+  width: 30px;
+  height: 30px;
+  -webkit-animation: spin 2s linear infinite; /* Safari */
+  animation: spin 2s linear infinite;
+  display: inline-block;
+  margin-left: 10px;
+}
+
+/* Safari */
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/*Resources*/
+#resourcesHeading {
+  text-align: center;
+  padding-bottom: 30px;
+}
+
+.card > h3 {
+  padding: 30px 0 0 20px;
+  display: inline;
+}
+
+.card {
+  min-height: 95%;
+}
+
+.card-img-top {
+  height: 50px;
+  width: 50px !important;
+  display: inline-block;
+  margin-right: 10px;
+}
+
+.card-body {
+  height: 190px;
+  padding: 0px 20px 20px 20px;
+}
+
+/*About*/
+#avatar {
+  width: 40%;
+}
+
+#flexcontainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.jumbotron {
+  height: 530px;
+  background-image: linear-gradient(to right, white, red);
+}
+
+
+
+/*Tablet*/
+@media screen and (max-width: 900px) {
+
+  #chartContainer {
+    height: 700px;
+  }
+  
+  #title > h1 {
+    font-size: 60px;
+  }
+
+  #subtitle {
+    font-size: 20px;
+  }
+
+  .input-group {
+    width: 95% !important;
+  }
+
+  #flexcontainer {
+    align-items: center;
+  }
+
+  #aboutinfo {
+    width: 40vw;
+  }
+
+  .btnlink {
+    margin-bottom: 20px;
+  }
+}
+
+
+/*Mobile*/
+@media screen and (max-width: 600px) {
+  #title > h1 {
+    font-size: 40px;
+  }
+
+  main {
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+
+  #chartContainer {
+    height: 750px;
+    padding-bottom: 30px;
+  }
+
+  .blockquote > h1 {
+    font-size: 10vw;
+  }
+  #canvas-wrapper {
+    height: 80vh;
+  }
+
+  .blockquote > h4 {
+    font-size: 4vw;
+  }
+
+  #flexcontainer {
+    flex-direction: column;
+  }
+
+  #aboutinfo {
+    width: 90vw;
+  }
 }

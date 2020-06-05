@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="sv">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Inlämning 3 - Covid-19 Country Comparison</title>
+        <link rel="stylesheet" id="stylesheet" type="text/css" href="src/css/style.css">
+        <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+        <link rel="shortcut icon" type="image/x-icon" href="images/favicon.ico" />
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-lg sticky-top navbar-dark bg-dark">
+            <a class="navbar-brand" href="index.html">
+                <img src="images/coronaicon.png" width="30" height="30" class="d-inline-block align-top" alt="Covid-19 icon">
+                CoCoCo
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarText">
+              <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                  <a class="nav-link" href="index.html">Home</a>
+                </li>
+                <li class="nav-item active">
+                  <a class="nav-link" href="#">Resources<span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="about.html">About</a>
+                </li>
+              </ul>
+            </div>
+        </nav>
+        <main>
+            <div class="album py-5 bg-light">
+                <div class="container">
+                    <h1 id="resourcesHeading">The following resources were used to create this website:</h1>
+                  <div class="row">
+                    <div class="col-md-4">
+                      <div class="card mb-4 box-shadow">
+                        <h3><img class="card-img-top" src="images/chartjs-logo.svg" alt="Card image cap">Charts.js</h3>
+                        <div class="card-body">
+                          <p class="card-text">The Charts.js library is used to create a graphical representation of Covid-19 datasets for two different countries.</p>
+                          <div class="d-flex justify-content-between align-items-center">
+                            <div class="btn-group">
+                                <a class="btn btn-outline-danger" href="https://www.chartjs.org/" target="blank" role="button">Check it out!</a>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card mb-4 box-shadow">
+                            <h3><img class="card-img-top" src="images/Covid19icon.png" alt="Card image cap">Covid-19 API</h3>
+                          <div class="card-body">
+                            <p class="card-text">The Covid-19 API is used to retrieve up to date statistics made available by Johns Hopkins University.</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                              <div class="btn-group">
+                                <a class="btn btn-outline-danger" href="https://covid19api.com/" target="blank" role="button">Check it out!</a>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-4">
+                        <div class="card mb-4 box-shadow">
+                          <h3><img class="card-img-top" src="images/selecticon.png" alt="Card image cap">Select2</h3>
+                          <div class="card-body">
+                            <p class="card-text">The Select2 library is used to create a searchable select element in order to facilitate the selection of countries.</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                              <div class="btn-group">
+                                <a class="btn btn-outline-danger" href="https://select2.org/" target="blank" role="button">Check it out!</a>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+        
+                      <div class="col-md-4">
+                        <div class="card mb-4 box-shadow">
+                          <h3><img class="card-img-top" src="images/Geonamesicon.png" alt="Card image cap">Geonames</h3>
+                          <div class="card-body">
+                            <p class="card-text">The Geonames-API is used to retrieve the name of the current location based on longitude and latitude.</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                              <div class="btn-group">
+                                <a class="btn btn-outline-danger" href="https://www.geonames.org/" target="blank" role="button">Check it out!</a>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-4">
+                        <div class="card mb-4 box-shadow">
+                          <h3><img class="card-img-top" src="images/githubicon.png" alt="Card image cap">Country-json</h3>
+                          <div class="card-body">
+                            <p class="card-text">The country-json data repository is used to populate the select list, retrieve population data and display flag items.</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                              <div class="btn-group">
+                                <a class="btn btn-outline-danger" href="https://github.com/samayo/country-json" target="blank" role="button">Check it out!</a>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-4">
+                        <div class="card mb-4 box-shadow">
+                          <h3><img class="card-img-top" src="images/bootstrapicon.png" alt="Card image cap">Bootstrap etc.</h3>
+                          <div class="card-body">
+                            <p class="card-text">Bootstrap, JQuery and Popper.js are used for styling, manipulating the DOM and adding tooltips.</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                              <div class="btn-group">
+                                <a class="btn btn-outline-danger" href="https://getbootstrap.com/" target="blank" role="button">Check it out!</a>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                  </div>
+                </div>
+              </div>
+        
+
+        </main>
+        <footer class="fixed-bottom footer-dark bg-dark">
+            &copy; 2020 by <a href="https://github.com/Christina3107" target="blank">Christina3107</a>
+        </footer>
+        <script type="text/javascript" src="dist/bundle.js"></script>
+    </body>
+</html>

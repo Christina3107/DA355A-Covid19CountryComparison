@@ -3,25 +3,94 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Inlämning 3 - CovidStats</title>
+        <title>Inlämning 3 - Covid-19 Country Comparison</title>
         <link rel="stylesheet" id="stylesheet" type="text/css" href="src/css/style.css">
-        <link href="https://fonts.googleapis.com/css2?family=Montserrat&family=Sacramento&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap" rel="stylesheet">
+        <link href="dist/select2.min.css" rel="stylesheet" />
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
         <link rel="shortcut icon" type="image/x-icon" href="images/favicon.ico" />
     </head>
     <body>
+        <nav class="navbar navbar-expand-lg sticky-top navbar-dark bg-dark">
+            <a class="navbar-brand" href="#">
+                <img src="images/coronaicon.png" width="30" height="30" class="d-inline-block align-top" alt="Covid-19 icon">
+                CoCoCo
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarText">
+              <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                  <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="resources.html">Resources</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="about.html">About</a>
+                </li>
+              </ul>
+        </nav>
         <header>
-            <h1>Corona Comparison</h1>
+            <div id="title">
+                <h1>Covid-19 Country Comparison</h1>
+                <h4 id="subtitle">Compare up-to-date Covid-19 statistics for your current location with a country of your choice!</h4>
+                <button type="button" class="btn btn-danger btn-lg" id="startButton">Get started!</button>
+            </div>
         </header>
         <main>
-            <section>
-                <p id="currentLocation">Retrieving position ...</p>
-                <button id="getStats" disabled>Get stats</button>
+            <section id="statsSection">
+                <h3 id="currentLocation">
+                Retrieving position...
+                <div class="loader"></div>
+                </div>
+                </h3>
+                <div class="input-group">
+                    <select class="custom-select" id="countrySelector" style="width: 90%">
+                      <option disabled selected>Select country for comparison</option>
+                    </select>
+                    <div class="input-group-append">
+                      <button class="btn btn-dark" id="getStats" type="button" disabled>Get stats!</button>
+                    </div>
+                </div>
+                <div id="chartType" class="text-center">
+                    <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                        <label class="btn btn-outline-danger active" id="confirmedlabel">
+                          <input type="radio" name="chartType" id="confirmed" autocomplete="off" value="confirmed" checked> confirmed
+                        </label>
+                        <label class="btn btn-outline-danger">
+                          <input type="radio" name="chartType" id="active" autocomplete="off" value="active"> active
+                        </label>
+                        <label class="btn btn-outline-danger">
+                          <input type="radio" name="chartType" id="recovered" autocomplete="off" value="recovered"> recovered
+                        </label>
+                        <label class="btn btn-outline-danger">
+                            <input type="radio" name="chartType" id="deaths" autocomplete="off" value="deaths"> deaths
+                        </label>
+                    </div>
+                </div>
             </section>
-            <section class="container">
-                <canvas id="myChart"></canvas>
+            <section class="container" id="chartContainer">
+                <div class="blockquote-wrapper">
+                    <div class="blockquote">
+                      <h1>
+                       Statistics <span style="color:#000000">are like a bikini - what they</span> reveal <span style="color:#000000">is</span> suggestive <span style="color:#000000">but what they</span> hide <span style="color:#000000">is</span> vital.</span>
+                       </h1>
+                      <h4>&mdash;Aaron Levenstein<br></h4>
+                    </div>
+                </div>
+                <div id="canvas-wrapper">
+                    <canvas id="myChart" aria-label="Covid-19 chart" role="img">
+                        <p>Your browser does not support the canvas element</p>
+                    </canvas>
+                    <p id="datasource">Data source: <a href="https://github.com/CSSEGISandData/COVID-19" target="blank">Johns Hopkins University Center for Systems Science and Engineering (JHU CSSE)</a>. Accessed via the <a href="https://covid19api.com/" target="blank">Covid-19 API</a>.</p>
+                </div>
             </section>
         </main>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+        <footer class="fixed-bottom footer-dark bg-dark">
+            &copy; 2020 by <a href="https://github.com/Christina3107" target="blank">Christina3107</a>
+        </footer>
         <script type="text/javascript" src="dist/bundle.js"></script>
     </body>
 </html>
