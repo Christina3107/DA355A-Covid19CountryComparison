@@ -12,7 +12,7 @@ Clone this repository to your local machine and make sure that you have Node.js 
 ### Installing
 
 1. Open your command line interface, navigate to the project folder ("DA355A-Covid19CountryComparison") and run `npm install`. 
-2. Run `node_modules/webpack-cli/bin/cli.js` in order to combine all Javascript files into one bundle. Alternatively, during development, run `npm run watch for automatic updates to the bundle-file.
+2. Run `node_modules/webpack-cli/bin/cli.js` in order to combine all Javascript files into one bundle. Alternatively, during development, run `npm run watch` for automatic updates to the bundle-file.
 3. Once the installation is complete you can open the index.html file in a browser of your choice. 
 
 ## Author
