@@ -283,7 +283,7 @@ function getCovidData(country) {
   return $.ajax({
     url: url,
     method: "GET",
-    timeout: 0
+    timeout: 8000
   }).fail(function(data) {
     console.log("API returned error: " + data.response);
     $("#APIError").css("display", "block")
