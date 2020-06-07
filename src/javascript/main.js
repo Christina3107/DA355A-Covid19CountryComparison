@@ -83,6 +83,7 @@ $("#countrySelector").on("change", function() {
 //Show Chart: destroys chart if it exists, retrieves corona statistics for current location and comparison country and populates chart
 $("#getStats").on("click", function() {
   //Remove placeholder quote
+  $("#chartType").css("display", "none")
   $("#datasource").hide()
   $(".blockquote-wrapper").remove()
   $("#APIError").css("display", "none")
@@ -100,22 +101,7 @@ $("#getStats").on("click", function() {
     $("label").removeClass("active")
     $("#confirmedlabel").addClass("active")
   }
-  //Display chart type buttons + tooltip for first time visitors
-  $("#chartType").css("display", "inline")
-  if(isFirstTimeVisitor() == true) {
-    if($(window).width() < 600) {
-      var popPlace
-      popPlace = "bottom"
-    } else {
-      popPlace = "right"
-    }
-    $('#chartType').popover( {
-      placement: popPlace,
-      trigger: 'focus',
-      content: 'Use the buttons to switch between different datasets.'
-    })
-    $('#chartType').popover('show')
-  }
+  
   
   //Get CovidData based on current place and comparison country
   let resultCurrentPlace = getCovidData(currentPlace)
@@ -127,6 +113,22 @@ $("#getStats").on("click", function() {
     populateChartData(resultComparisonCountry.responseJSON, comparisonCountry[1])
     
   }).done(function() {
+    //Display chart type buttons + tooltip for first time visitors --> FIX NEEDED: should be moved to done-section!
+    $("#chartType").css("display", "inline")
+    if(isFirstTimeVisitor() == true) {
+      if($(window).width() < 600) {
+        var popPlace
+        popPlace = "bottom"
+      } else {
+        popPlace = "right"
+      }
+      $('#chartType').popover( {
+        placement: popPlace,
+        trigger: 'focus',
+        content: 'Use the buttons to switch between different datasets.'
+      })
+      $('#chartType').popover('show')
+    }
     $(".loader-bg").css("display", "none")
     $("#canvas-wrapper").show()
     $("#datasource").show()
