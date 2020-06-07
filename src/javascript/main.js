@@ -84,9 +84,8 @@ $("#countrySelector").on("change", function() {
 $("#getStats").on("click", function() {
   //Remove placeholder quote
   $(".blockquote-wrapper").remove()
-  $("#canvas-wrapper").show()
-  $("#datasource").show()
-  $("#APIError").remove()
+  $("#APIError").css("display", "none")
+  $(".loader-bg").css("display", "block")
   //Scroll down to statistics section when button is clicked
   $('html, body').animate({
     scrollTop: $("#statsSection").offset().top
@@ -127,6 +126,9 @@ $("#getStats").on("click", function() {
     populateChartData(resultComparisonCountry.responseJSON, comparisonCountry[1])
     
   }).done(function() {
+    $(".loader-bg").css("display", "none")
+    $("#canvas-wrapper").show()
+    $("#datasource").show()
     console.log(chartData)
     buildChart("confirmed")
   })
@@ -282,8 +284,9 @@ function getCovidData(country) {
     method: "GET",
     timeout: 0
   }).fail(function(data) {
-    console.log("API returned error: " + data);
-    $("#chartType").append(`<div id="APIError"><h2 id="APIError">Sorry, could not retrieve any data for the selected country, please select another one!</h2><img src='images/404.png' alt='404-avatar'></div>`)
+    console.log("API returned error: " + data.response);
+    $("#APIError").css("display", "block")
+    $(".loader-bg").css("display", "none")
     $("#datasource").hide()
   })
 }
