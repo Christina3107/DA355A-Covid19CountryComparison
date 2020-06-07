@@ -83,6 +83,7 @@ $("#countrySelector").on("change", function() {
 //Show Chart: destroys chart if it exists, retrieves corona statistics for current location and comparison country and populates chart
 $("#getStats").on("click", function() {
   //Remove placeholder quote
+  $("#datasource").hide()
   $(".blockquote-wrapper").remove()
   $("#APIError").css("display", "none")
   $(".loader-bg").css("display", "block")
